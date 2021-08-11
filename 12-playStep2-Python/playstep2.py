@@ -21,7 +21,6 @@
 # assert(playstep2(544, 456) == (644, 45))
 # If you have 2 matching dice (a pair), keep the pair and roll one die to replace the third die.
 # So the output is (644, 45)
-
 # Here are some more examples. Be sure you carefully understand them:
 # assert(playstep2(413, 2312) == (421, 23))
 # assert(playstep2(413, 2345) == (544, 23))
@@ -32,7 +31,55 @@
 # Hint: Then, you may wish to use diceToOrderedHand(a, b, c) at the end to convert the 3 dice back
 # into a sorted hand.
 # Hint: Also, remember to use % to get the one's digit, and use //= to get rid of the one's digit.
-
+def han(l):
+	res=[]
+	for i in range(len(l)-1):
+		if l[i] == l[i+1]:
+			res.append(l[i])
+			res.append(l[i+1])
+	return res
+	
 def playstep2(hand, dice):
 	# your code goes here
-	pass
+	l1=[]
+	l2=[]
+	for i in range(len(str(hand))):
+		d=hand%10
+		hand=hand//10
+		l1.append(d)
+	print(l1)
+	if len(l1)==len(set(l1)):
+		res1=max(l1)
+	else:
+		res1=han(l1)
+	for i in range(len(str(dice))):
+		d=dice%10
+		dice=dice//10
+		l2.append(d)
+	l2=l2[::-1]
+	print(l2)
+	if type(res1)==list:
+		res1.append(l2[len(l2)-1])
+		r1=sorted(res1)[::-1]
+		r2=l2[0:len(l2)-1]
+		s1=""
+		s2=""
+		for i in range(len(r1)):
+			s1+=str(r1[i])
+		for i in range(len(r2)):
+			s2+=str(r2[i])
+		return (int(s1),int(s2))
+	else:
+		res2=[]
+		res2.append(res1)
+		res2.append(l2[len(l2)-1])
+		res2.append(l2[len(l2)-2])
+		r1=sorted(res2)[::-1]
+		r2=l2[0:len(l2)-2]
+		s1=""
+		s2=""
+		for i in range(len(r1)):
+			s1+=str(r1[i])
+		for i in range(len(r2)):
+			s2+=str(r2[i])
+		return (int(s1),int(s2))
