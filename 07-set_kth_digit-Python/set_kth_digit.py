@@ -7,5 +7,13 @@
 
 
 def fun_set_kth_digit(n, k, d):
-		return 0
-
+	x=abs(n)
+	x=str(x)
+	x=x[::-1]
+	if k>len(x)-1:
+		x=x+str(d)
+	else:
+		x=x.replace(x[k],str(d))
+	if n<0:
+		return -int(x[::-1])
+	return int(x[::-1])
