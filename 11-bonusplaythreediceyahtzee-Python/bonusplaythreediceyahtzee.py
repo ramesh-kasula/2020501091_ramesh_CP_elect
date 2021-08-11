@@ -39,6 +39,75 @@
 # assert(bonusPlayThreeDiceYahtzee(2333555) == (555, 35))
 
 
+def handtodice(hand):
+	# your code goes here
+	res=[]
+	for i in range(len(str(hand))):
+		d=hand%10
+		hand=hand//10
+		res.append(d)
+	return tuple(res[::-1])
+
+def dicetoorderedhand(a, b, c):
+	# your code goes here
+	l=sorted([a,b,c])
+	s=str(l[0])+str(l[1])+str(l[2])
+	# print(int(s))
+	return int(s[::-1])
+
+def han(l):
+	res=[]
+	for i in range(len(l)-1):
+		if l[i] == l[i+1]:
+			res.append(l[i])
+			res.append(l[i+1])
+	return res
+	
+def playstep2(hand, dice):
+	# your code goes here
+	l1=[]
+	l2=[]
+	for i in range(len(str(hand))):
+		d=hand%10
+		hand=hand//10
+		l1.append(d)
+	print(l1)
+	if len(l1)==len(set(l1)):
+		res1=max(l1)
+	else:
+		res1=han(l1)
+	for i in range(len(str(dice))):
+		d=dice%10
+		dice=dice//10
+		l2.append(d)
+	l2=l2[::-1]
+	print(l2)
+	if type(res1)==list:
+		res1.append(l2[len(l2)-1])
+		r1=sorted(res1)[::-1]
+		r2=l2[0:len(l2)-1]
+		s1=""
+		s2=""
+		for i in range(len(r1)):
+			s1+=str(r1[i])
+		for i in range(len(r2)):
+			s2+=str(r2[i])
+		return (int(s1),int(s2))
+	else:
+		res2=[]
+		res2.append(res1)
+		res2.append(l2[len(l2)-1])
+		res2.append(l2[len(l2)-2])
+		r1=sorted(res2)[::-1]
+		r2=l2[0:len(l2)-2]
+		s1=""
+		s2=""
+		for i in range(len(r1)):
+			s1+=str(r1[i])
+		for i in range(len(r2)):
+			s2+=str(r2[i])
+		return (int(s1),int(s2))
+
 def bonusplaythreediceyahtzee(dice):
 	# Your code goes here
 	pass
