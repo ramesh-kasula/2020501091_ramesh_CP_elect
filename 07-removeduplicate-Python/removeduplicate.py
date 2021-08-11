@@ -5,4 +5,10 @@
 
 def removeduplicate(text):
 	# Your code goes here
-	pass
+	text=text[::-1]
+	res=""
+	for i in range(len(text)):
+		if text[i] not in text[i+1::]:
+			text.replace(text[i],"")
+			res+=text[i]
+	return res[::-1]
