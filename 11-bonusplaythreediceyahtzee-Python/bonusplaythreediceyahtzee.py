@@ -57,10 +57,16 @@ def dicetoorderedhand(a, b, c):
 
 def han(l):
 	res=[]
+	if l[0] == l[1] and l[1]==l[2]:
+			res.append(l[0])
+			res.append(l[1])	
+			res.append(l[2])
+			return res	
 	for i in range(len(l)-1):
 		if l[i] == l[i+1]:
 			res.append(l[i])
 			res.append(l[i+1])
+	
 	return res
 	
 def playstep2(hand, dice):
@@ -83,16 +89,17 @@ def playstep2(hand, dice):
 	l2=l2[::-1]
 	print(l2)
 	if type(res1)==list:
-		res1.append(l2[len(l2)-1])
+		if len(res1)==2:
+			res1.append(l2[len(l2)-1])		
 		r1=sorted(res1)[::-1]
 		r2=l2[0:len(l2)-1]
-		s1=""
-		s2=""
+		n1=0
+		n2=0
 		for i in range(len(r1)):
-			s1+=str(r1[i])
+			n1+=r1[i]*10**((len(r1)-1)-i)
 		for i in range(len(r2)):
-			s2+=str(r2[i])
-		return (int(s1),int(s2))
+			n2+=r2[i]*10**((len(r2)-1)-i)
+		return (n1,n2)
 	else:
 		res2=[]
 		res2.append(res1)
@@ -100,14 +107,32 @@ def playstep2(hand, dice):
 		res2.append(l2[len(l2)-2])
 		r1=sorted(res2)[::-1]
 		r2=l2[0:len(l2)-2]
-		s1=""
-		s2=""
+		n1=0
+		n2=0
 		for i in range(len(r1)):
-			s1+=str(r1[i])
+			n1+=r1[i]*10**((len(r1)-1)-i)
 		for i in range(len(r2)):
-			s2+=str(r2[i])
-		return (int(s1),int(s2))
+			n2+=r2[i]*10**((len(r2)-1)-i)
+		return (n1,n2)
+def score(h):
+	a=h%10
+	x=h//10
+	b=x%10
+	x=x//10
+	c=x%10
+	if a!=b and b!=c and c!=a:
+		return max(a,b,c)
+	elif ((a==b and b!=c) or (b==c and c!=a)):
+		return 10+b+b
+	elif a==b and b==c:
+		return 20+c+c+c
+	
 
 def bonusplaythreediceyahtzee(dice):
 	# Your code goes here
-	pass
+	hand1=dice%1000
+	dice1=dice//1000
+	m,n=playstep2(hand1,dice1)
+	o,p=playstep2(m,n)
+	s=score(o)
+	return(o,s)
