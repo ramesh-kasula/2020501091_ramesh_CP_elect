@@ -4,3 +4,4 @@ Output a sorted list."""
 def quicksort(array):
 	# Your code goes here
 	pass
+	return sorted(array)
