@@ -23,6 +23,13 @@
 
 def removeRowAndCol(L, row, col):
     # Your code goes here...
-    pass
-
+    # pass
+    if len(L)<2:
+        return "Cannot remove row or column"
+    for i in range(len(L)):
+        del L[i][col]
+    L.pop(row)
+    return L
 # Write your own test cases.
+assert(removeRowAndCol([ [ 2, 3, 4, 5],[ 8, 7, 6, 5],[ 0, 1, 2, 3] ], 1,2)==[ [ 2, 3, 5],[ 0, 1, 3] ])
+print("test cases passed")
