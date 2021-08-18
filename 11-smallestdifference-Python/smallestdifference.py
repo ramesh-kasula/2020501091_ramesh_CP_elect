@@ -6,4 +6,13 @@
 
 def smallestdifference(a):
 	# Your code goes here
-	pass
+	# pass
+	if len(a)<1:
+		return -1
+	sub=100**200
+	for i in range(len(a)-1):
+		for j in range(i+1,len(a)):
+			if abs(a[i]-a[j])<sub:
+				sub=abs(a[i]-a[j])
+			
+	return sub
