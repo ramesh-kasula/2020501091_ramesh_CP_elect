@@ -10,4 +10,10 @@
 
 def gcd(m, n):
 	# your code goes here
-	pass
+	# pass
+	if m==0 or n==0:
+		return 1
+	
+	while(m%n!=0):
+		(m,n)=(n,m%n)
+	return n
