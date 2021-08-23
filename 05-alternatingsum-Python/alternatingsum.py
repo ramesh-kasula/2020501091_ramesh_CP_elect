@@ -5,7 +5,7 @@
 
 
 
-def fun_alternatingsum(a): 
-	return 0
-
-
+def fun_alternatingsum(a):
+	if len(a)==0:
+		return 0
+	return a[0]-fun_alternatingsum(a[1:])
