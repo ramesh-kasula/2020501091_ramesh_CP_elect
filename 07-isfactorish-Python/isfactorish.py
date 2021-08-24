@@ -12,5 +12,13 @@
 
 
 def fun_isfactorish(n):
-	return False
+	x=abs(n)
+	s=str(x)
+
+	for i in range(len(s)):
+		if int(s[i])==0 or x%int(s[i])!=0:
+			return False
+	if len(s)!=3 or len(s)!=len(set(s)):
+		return False
+	return True
 
