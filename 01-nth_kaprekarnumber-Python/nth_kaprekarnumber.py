@@ -8,6 +8,22 @@
 
 
 import math
-
+def isKaprekar(n):
+    if n==1:
+        return True
+    sqn=n**2
+    for i in range(len(str(sqn))-1):
+        if 10**i==n:
+            continue
+        s=(sqn//10**(i+1))+(sqn%10**(i+1))
+        if s==n:    
+            return True
+        return False
 def fun_nth_kaprekarnumber(n):
-    return 1;
+    num=0
+    c=0
+    while c<=n:
+        num+=1
+        if(isKaprekar(num)==True):
+            c+=1
+    return num
