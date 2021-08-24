@@ -7,4 +7,10 @@
 
 def isrotation(x, y):
 	# Your code goes here
-	pass
+	# pass
+	s=str(x)
+	for i in range(len(s)):
+		s=s[1:]+s[0]
+		if int(s)==y:
+			return True
+	return False
