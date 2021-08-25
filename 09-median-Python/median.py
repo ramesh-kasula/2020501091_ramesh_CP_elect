@@ -5,4 +5,12 @@
 
 def median(a):
 	# your code goes here
-	pass
+	# pass
+	a=sorted(a)
+	if len(a)<1:
+		return None
+	if len(a)%2==0:
+		x=a[(len(a)//2)-1]
+		y=a[len(a)//2]
+		return (x+y)/2
+	return a[len(a)//2]
