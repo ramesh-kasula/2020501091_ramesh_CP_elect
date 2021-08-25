@@ -13,7 +13,7 @@ def isKaprekar(n):
         return True
     sqn=n**2
     for i in range(len(str(sqn))-1):
-        if 10**i==n:
+        if 10**(i+1)==n:
             continue
         s=(sqn//10**(i+1))+(sqn%10**(i+1))
         if s==n:    
