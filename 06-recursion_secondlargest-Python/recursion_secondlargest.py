@@ -16,11 +16,10 @@
 def recursion_secondlargest(L):
 	# Your code goes here
 	# pass
-	def recursion_secondlargest(L):
-    if len(L) <= 1:
-        return None
-    else:
-        return secondlargest(2,L)
+	if len(L) <= 1:
+		return None
+	else:
+		return secondlargest(2,L)
  
 def secondlargest(n,L=[]):
     m=max(L)
