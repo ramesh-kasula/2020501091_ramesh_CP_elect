@@ -5,4 +5,11 @@
 
 def hasduplicates(L):
 	# Your code goes here
-	pass
+	# pass
+	li=[]
+	for i in L:
+		li+=i
+	# print(li)
+	if len(li)!=len(set(li)):
+		return True
+	return False
