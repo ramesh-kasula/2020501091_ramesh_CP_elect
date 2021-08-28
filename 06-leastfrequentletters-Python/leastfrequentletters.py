@@ -9,4 +9,25 @@
 
 def leastfrequentletters(s):
 	# Your code goes here
-	pass
+	# pass
+	s=s.lower()
+	s=s.replace(" ","")
+	li=[]
+	for i in s:
+		li.append(i)
+	# print(li)
+	d=dict()
+	for i in li:
+		if i.isalpha():
+			d[i]=li.count(i)
+	print(d)
+	res=[]
+	for k,v in d.items():
+		if v==min(d.values()):
+			res+=k
+	res=sorted(res)
+	ress=""
+	for i in res:
+		ress+=i
+	return ress
+print(leastfrequentletters("aDq efQ? FB'daf!!!"))
