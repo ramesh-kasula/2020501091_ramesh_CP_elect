@@ -12,6 +12,24 @@
 
 def areAnagrams(s1, s2):
     # Your code goes here...
-    pass
+    # pass
+    s1=s1.lower()
+    s2=s2.lower()
+    if len(set(s1))!=len(set(s2)):
+        return False
+    for i in s1:
+        if s1.count(i)!=s2.count(i):
+            return False
+    return True
 
 # write your test cases here...
+assert(areAnagrams("aba","aab")==True)
+assert(areAnagrams("abaa","aaab")==True)
+assert(areAnagrams("abba","aaab")==False)
+assert(areAnagrams("abac","abab")==False)
+assert(areAnagrams("abbca","abcab")==True)
+assert(areAnagrams("abbca","abcab")==True)
+assert(areAnagrams("abbbca","abbbab")==False)
+assert(areAnagrams("abbccaa","acbacab")==True)
+assert(areAnagrams("abbceda","abcabed")==True)
+print("Test Cases passed")
