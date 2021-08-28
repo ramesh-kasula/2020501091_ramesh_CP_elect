@@ -6,5 +6,13 @@
 
 
 def fun_carrylessadd(x, y):
-	return 0
-
+	sum=0
+	d=1
+	while(x>0 or y>0):
+		bit_sum=(x%10)+(y%10)
+		bit_sum=bit_sum%10
+		sum=sum+d*bit_sum
+		x=x//10
+		y=y//10
+		d*=10
+	return sum
