@@ -6,4 +6,26 @@
 # as does longestDigitRun(-677886).
 def longestdigitrun(n):
 	# Your code goes here
-	pass
+	# pass
+	n=abs(n)
+	c=1
+	num=0
+	maxc=0
+	while n>0:
+		a=n%10
+		n=n//10
+		b=n%10
+		if a==b:
+			c+=1
+		else:
+			if maxc==c:
+				if num>=a:
+					num=a
+			elif(maxc<c):
+				maxc=c
+				num=a
+			c=1
+	return num
+
+print(longestdigitrun(117773732))
+print(longestdigitrun(677886))
