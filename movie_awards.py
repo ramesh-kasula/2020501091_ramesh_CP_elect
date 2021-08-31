@@ -18,4 +18,24 @@
 
 def movieAwards(oscarResults):
     # Your code goes here...
-    pass
+    # pass
+    l=[]
+    for i in oscarResults:
+        m,n=i
+        l.append(n)
+    l=sorted(l)
+    d=dict()
+    for i in l:
+        d[i]=l.count(i)
+    return d
+    
+oscarResults={ 
+    ("Best Picture", "The Shape of Water"), 
+    ("Best Actor", "Darkest Hour"),
+    ("Best Actress", "Three Billboards Outside Ebbing, Missouri"),
+    ("Best Director", "The Shape of Water"),
+    ("Best Supporting Actor", "Three Billboards Outside Ebbing, Missouri"),
+    ("Best Supporting Actress", "I, Tonya"),
+    ("Best Original Score", "The Shape of Water")
+}
+print(movieAwards(oscarResults))
