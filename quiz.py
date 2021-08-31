@@ -5,8 +5,22 @@
 # This list indicates that student0 scored 88 on quiz0, 80 on quiz1, and 91 on quiz2. Also, student1 scored 68 on quiz0, 100 on quiz1, and did not take quiz2. The function returns the quiz with the highest average. In this case, quiz0 average is 78, quiz1 average is 90, and quiz2 average is 91 (since we ignore the -1). Thus, quiz2 is the best, and so the function returns 2 in this case. You are not responsible for malformed input, except you should return None if there are no quizzes. Also, resolve ties in favor of the lower quiz number. Here is a test function for you:
 
 def bestQuiz(l):
-    # Your  code goes ehre...
-    pass
+      s=0
+      li=[]
+      li2=[]
+      for i in range(len(l[0])):
+            for j in range(len(l)):
+                  if l[j][i] !=(-1):
+                        li.append(l[j][i])
+            # print(li)
+            if len(li)!=0:
+                  li2.append(sum(li)//len(li))
+            li=[]
+            # print(li2)
+      if len(li2)==0:
+            return None
+      return li2.index(max(li2))
+
 
 def testBestQuiz():
     print('Testing bestQuiz()...', end='')
@@ -23,3 +37,4 @@ def testBestQuiz():
           [-1, -1, -1 ]]
     assert(bestQuiz(a) == None)
     print('All test cases passed...!')
+testBestQuiz()
