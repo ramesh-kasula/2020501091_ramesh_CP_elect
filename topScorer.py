@@ -14,9 +14,26 @@
 # If nobody wins (there is no data), return None (not the 
 # string "None"). So, for example:
 
+def score(l):
+    s=0
+    for i in l:
+        s+=int(i)
+    return s
 def topScorer(data):
     # Your code goes here...
-    return ""
+    if len(data)<1:
+        return None
+    d=data.split("\n")
+    dic=dict()
+    for i in d:
+        l=i.split(",")
+        if l!=['']:
+            dic[l[0]]=score(l[1::])
+    res=""
+    for k,v in dic.items():
+        if v==max(dic.values()):
+            res+=k+","
+    return res[:len(res)-1]
 
 data = '''\
 Fred,10,20,30,40
@@ -34,6 +51,7 @@ data = '''\
 Fred,11,20,30
 Wilma,10,20,30,1
 '''
+# print(topScorer(data))
 assert(topScorer(data) == 'Fred,Wilma')
 
 assert(topScorer('') == None)
