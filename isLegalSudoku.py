@@ -15,13 +15,24 @@ isLegalSudoku(board): This function takes a Sudoku board (which you may assume i
 '''
 def areLegalValues(values):
     # Your code goes here....
-    return False
+    l=sorted(values)
+    for i in range(len(l)-1):
+        if l[i]>len(l) or l[i+1]>len(l):
+            return False
+        if l[i]==l[i+1] and l[i]!=0:
+            return False
+    return True
 
 '''
     This function takes a Sudoku board and a row number. The function returns True if the given row in the given board is legal (where row 0 is the top row and row (N2-1) is the bottom row), and False otherwise. To do this, your function must create a 1d list of length N2 holding the values from the given row, and then provide these values to the areLegalValues function you previously wrote. (Actually, because areLegalValues is non-destructive, you do not have to copy the row; you may use an alias.)
 '''
 def isLegalRow(board, row):
     # Your code goes here....
+    if row>=len(board):
+        return False
+    x=board[row]
+    if areLegalValues(x):
+        return True
     return False
 
 '''
@@ -29,6 +40,13 @@ def isLegalRow(board, row):
 '''
 def isLegalCol(board, col):
     # Your code goes here....
+    if col>=len(board):
+        return False
+    y=[]
+    for i in range(len(board)):
+            y.append(board[i][col])
+    if areLegalValues(y):
+        return True
     return False
 
 '''
@@ -36,11 +54,31 @@ def isLegalCol(board, col):
 '''
 def isLegalBlock(board, block):
     # Your code goes here....
+    if(block>=len(board)):
+        return False
+    x=block%3
+    y=block//3
+    c=[(3*x), ((3*x)+1), ((3*x)+2)]
+    r=[(3*y), ((3*y)+1), ((3*y)+2)]
+    blk=[]
+    for i in range(len(r)):
+        for j in range(len(c)):
+            blk.append(board[r[i]][c[j]])
+    if areLegalValues(blk)==True:
+        return True
     return False
+
 
 '''
     This function takes a Sudoku board (which you may assume is a N2xN2 2d list of integers), and returns True if the board is legal, as described above. To do this, your function must call isLegalRow over every row, isLegalCol over every column, and isLegalBlock over every block. See how helpful those helper functions are? Seriously, this exercise is a very clear demonstration of the principle of top-down design and function decomposition.
 '''
 def isLegalSudoku(board):
     # Your code goes here....
-    return False
+    for i in range(len(board)):
+        if not isLegalRow(board,i):
+            return False
+        if isLegalCol(board,i)==False:
+            return False
+        if isLegalBlock(board,i)==False:
+            return False
+    return True
