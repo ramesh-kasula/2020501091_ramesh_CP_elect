@@ -26,4 +26,17 @@ Thus, in this example, friendsOfFriends should return:
 
 def friendsOfFriends(d):
     # Your code goes here...
-    return None
+    dic={}
+    for i in d:
+        for j in d[i]:
+            if i not in dic:
+                dic[i]=set()
+            if j in d:
+                for k in d[j]:
+                    if i not in k and k not in d[i]:
+                        dic[i].add(k)
+    for i in d:
+        if i not in dic:
+            dic[i]=set()
+
+    return dic
