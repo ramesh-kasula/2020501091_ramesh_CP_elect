@@ -28,10 +28,37 @@
 #         ]
 # assert(isKnightsTour(board)==True)
 
+def rowcol(l,i):
+    for r in range(len(l)):
+        for c in range(len(l[0])):
+            if l[r][c]==i:
+                return r,c
+    return -1,-1
+
+def validmove(r1,c1,r2,c2):
+    if(((abs(r1-r2)==1) and (abs(c1-c2)==2)) or ((abs(c1-c2)==1) and (abs(r1-r2)==2))):
+        return True
+    return False
 
 def isKnightsTour(board):
     # Your code goes here...
-    pass
+    # pass
+    l=board
+    for i in range(len(l)):
+        for j in range(len(l[0])):
+            if l[i][j]==0:
+                return False
+    r=len(l)
+    i=1
+    while(i<r*r):
+        r1,c1=rowcol(l,i)
+        r2,c2=rowcol(l,i+1)
+        if r1==-1 or c1==-1:
+            return False
+        i+=1
+        if validmove(r1,c1,r2,c2)==False:
+            return False
+    return True
 
 board = [
             [  1, 60, 39, 34, 31, 18,  9, 64 ],
